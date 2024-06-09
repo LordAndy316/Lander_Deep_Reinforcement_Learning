@@ -1,12 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3at0x2nwhjja"]
+[gd_scene load_steps=4 format=3 uid="uid://b3at0x2nwhjja"]
+
+[ext_resource type="PackedScene" uid="uid://dybm5gbwk2h7u" path="res://player.tscn" id="1_4cahx"]
+[ext_resource type="Script" path="res://world.gd" id="1_a6saf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apiw6"]
 size = Vector2(1150, 64)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_a6saf")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(575, 618)
 shape = SubResource("RectangleShape2D_apiw6")
+
+[node name="Player" parent="." instance=ExtResource("1_4cahx")]
+position = Vector2(592, 44)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
