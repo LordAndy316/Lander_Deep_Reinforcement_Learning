@@ -1,12 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dybm5gbwk2h7u"]
+[gd_scene load_steps=6 format=3 uid="uid://dybm5gbwk2h7u"]
 
 [ext_resource type="Texture2D" uid="uid://brsu7c5ooq1he" path="res://Sprites/Lander_2.png" id="1_llcv1"]
 [ext_resource type="Script" path="res://player.gd" id="1_p22du"]
 [ext_resource type="Texture2D" uid="uid://chuqcvx1xwbpj" path="res://Sprites/Lander_up_1.png" id="2_u7ssd"]
 [ext_resource type="Texture2D" uid="uid://bbu2yitbcs1s6" path="res://Sprites/Lander_up_2.png" id="3_xbvms"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrhxj"]
-size = Vector2(50, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vi7k3"]
 animations = [{
@@ -31,10 +28,13 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+platform_floor_layers = 4294901761
 script = ExtResource("1_p22du")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mrhxj")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 14.5)
+polygon = PackedVector2Array(-22, 10.5, -17, 10.5, -17, 1.5, -13, 6.5, 13, 6.5, 17, 1.5, 17, 10.5, 22, 10.5, 22, -10.5, 18, -10.5, 18, -21.5, -13, -21.5, -13, -34.5, -14, -34.5, -14, -21.5, -18, -21.5, -18, -10.5, -22, -10.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
